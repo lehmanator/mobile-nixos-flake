@@ -1,19 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-let
-  inherit (lib) mkForce;
-  system_type = config.mobile.system.type;
-  defaultUserName = "victor";
-in
+{ config, lib, pkgs, user, ... }:
 {
-  imports = [
-    ./gnome.nix
-  ];
+  imports = [ ./gnome.nix ];
 
   config = {
-    users.users."${defaultUserName}" = {
+    users.users."${user}" = {
       isNormalUser = true;
-      password = "1234";
+      password = "343536";
       extraGroups = [
         "dialout"
         "feedbackd"
@@ -31,6 +23,6 @@ in
     services.pipewire.enable = lib.mkForce false;
     zramSwap.enable = true;
     networking.firewall.enable = false;
-    system.stateVersion = "23.05";
+    system.stateVersion = "23.11";
   };
 }
