@@ -5,7 +5,7 @@
       url = "github:numtide/flake-utils";
     };
     mobile-nixos = {
-      url = "github:nixos/mobile-nixos";
+      url = "github:nixos/mobile-nixos/development";
       flake = false;
     };
     gnome-mobile.url = "github:lehmanator/nixpkgs-gnome-mobile";
