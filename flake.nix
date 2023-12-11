@@ -8,7 +8,7 @@
       url = "github:nixos/mobile-nixos";
       flake = false;
     };
-    gnome-mobile.url = "github:chuangzhu/nixpkgs-gnome-mobile";
+    gnome-mobile.url = "github:lehmanator/nixpkgs-gnome-mobile";
     snowflake.url = "github:snowflakelinux/snowflake-modules";
     nix-data.url = "github:snowflakelinux/nix-data";
     nix-software-center.url = "github:vlinkz/nix-software-center";
