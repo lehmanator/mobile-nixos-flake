@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }@moduleArgs:
 
 let
   inherit (lib) mkForce;
   system_type = config.mobile.system.type;
-  defaultUserName = "victor";
+  defaultUserName = if moduleArgs ? "user" then moduleArgs.user else "sam";
 in
 {
   imports = [
@@ -13,7 +13,7 @@ in
   config = {
     users.users."${defaultUserName}" = {
       isNormalUser = true;
-      password = "1234";
+      password = lib.mkDefault "1234";
       extraGroups = [
         "dialout"
         "feedbackd"
@@ -31,6 +31,6 @@ in
     services.pipewire.enable = lib.mkForce false;
     zramSwap.enable = true;
     networking.firewall.enable = false;
-    system.stateVersion = "23.05";
+    system.stateVersion = "24.05";
   };
 }
