@@ -81,4 +81,8 @@
     # $ bin/kernel-normalize-config $device_name
   });
 
+  nixConfig = {
+    extra-substituters = [ "https://lehmanator.cachix.org/" ];
+    extra-trusted-public-keys = [ "lehmanator.cachix.org-1:kT+TO3tnSoz+lxk2YZSsMOtVRZ7Gc57jaKWL57ox1wU=" ];
+  };
 }
