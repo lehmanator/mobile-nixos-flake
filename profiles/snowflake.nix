@@ -1,9 +1,9 @@
 { config, pkgs, inputs, ... }:
 {
   environment.systemPackages = [
-    inputs.nix-software-center.packages."aarch64-linux".nix-software-center
-    inputs.nixos-conf-editor.packages."aarch64-linux".nixos-conf-editor
-    inputs.snow.packages."aarch64-linux".snow
+    inputs.nix-software-center.packages.${pkgs.system}.nix-software-center
+    inputs.nixos-conf-editor.packages.${pkgs.system}.nixos-conf-editor
+    inputs.snow.packages.${pkgs.system}.snow
     pkgs.git # For rebuiling with github flakes
   ];
   programs.nix-data = {
