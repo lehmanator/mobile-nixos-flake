@@ -28,7 +28,7 @@
         device = "oneplus-fajita";
         modules = [ 
           nixpkgs-gnome-mobile.nixosModules.gnome-mobile
-          ./configuration.nix
+          ./configs/gnome.nix
         ];
       };
       uefi-x86_64 = mobileNixosSystem {
@@ -36,7 +36,7 @@
         device = "uefi-x86_64";
         modules = [
           nixpkgs-gnome-mobile.nixosModules.gnome-mobile
-          ./configuration.nix
+          ./configs/gnome.nix
         ];
       };
     };

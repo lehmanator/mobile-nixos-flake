@@ -1,7 +1,7 @@
 { config, lib, pkgs, user, ... }:
 {
   imports = [ 
-    ./profiles/gnome.nix
+    ../profiles/gnome.nix
   ];
 
   config = {
