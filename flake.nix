@@ -16,39 +16,27 @@
   };
 
   outputs = { self, flake-utils, nixpkgs, nixpkgs-gnome-mobile, nixos-mobile, ... }@inputs:
+  let
+    mobileNixosSystem = import ./lib/mobileNixosSystem.nix { inherit inputs; };
+  in
   {
     nixosConfigurations = {
-      fajita = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = { inherit inputs; user = "sam"; };
-        modules = [
-          { _module.args = { inherit inputs; user = "sam"; }; }
-          (import "${nixos-mobile}/lib/configuration.nix" { device = "oneplus-fajita"; })
-          ./configuration.nix
+      fajita_minimal = mobileNixosSystem {
+        device = "oneplus-fajita";
+      };
+      fajita = mobileNixosSystem {
+        device = "oneplus-fajita";
+        modules = [ 
           nixpkgs-gnome-mobile.nixosModules.gnome-mobile
-          #./snowflake.nix
-          #inputs.snowflake.nixosModules.snowflake
-          #inputs.nix-data.nixosModules."aarch64-linux".nix-data
+          ./configuration.nix
         ];
       };
-
-      uefi-x86_64 = nixpkgs.lib.nixosSystem {
+      uefi-x86_64 = mobileNixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; user = "sam"; };
+        device = "uefi-x86_64";
         modules = [
-          { _module.args = { inherit inputs; user = "sam"; }; }
-          (import "${nixos-mobile}/lib/configuration.nix" { device = "uefi-x86_64"; })
-          ./configuration.nix
           nixpkgs-gnome-mobile.nixosModules.gnome-mobile
-        ];
-      };
-
-      fajita_minimal = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = { inherit inputs; user = "sam"; };
-        modules = [
-          { _module.args = { inherit inputs; user = "sam"; }; }
-          (import "${nixos-mobile}/lib/configuration.nix" { device = "oneplus-fajita"; })
+          ./configuration.nix
         ];
       };
     };
